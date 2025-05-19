@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
 
@@ -26,6 +27,7 @@ export default function CartPage() {
   const shippingFee = 2500
   const discount = 6000
   const finalPrice = totalPrice + shippingFee - discount
+  const router = useRouter()
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
@@ -84,7 +86,8 @@ export default function CartPage() {
 
               {/* 주문 버튼 */}
               <div className="text-center">
-                <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 text-lg font-semibold">
+                <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 text-lg font-semibold" 
+                onClick={()=> router.push('/order')}>
                   주문하기
                 </button>
               </div>

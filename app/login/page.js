@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { jwtDecode } from 'jwt-decode'
 import authApi from '../../lib/authApi'
 import Header from '@/components/Header'
 
@@ -17,10 +18,18 @@ export default function LoginPage() {
       const res = await authApi.post('/login', { userId, password })
       const { accessToken, refreshToken } = res.data
 
-
       localStorage.setItem('access_token', accessToken)
       localStorage.setItem('refresh_token', refreshToken)
-      router.push('/')
+
+      // JWT 디코드하여 역할 확인
+      const decoded = jwtDecode(accessToken)
+      const role = decoded?.auth || decoded?.role
+
+      if (role === 'ROLE_ADMIN') {
+        router.push('/admin') // ✅ 폴더 구조에 맞게 경로 수정
+      } else {
+        router.push('/')
+      }
     } catch {
       setError('아이디 또는 비밀번호가 틀렸습니다.')
     }
@@ -34,7 +43,6 @@ export default function LoginPage() {
         <div className="w-full max-w-sm p-6 bg-white rounded shadow">
           {/* 로고 + 사이트 이름 */}
           <div className="flex flex-col items-center mb-6">
-
             <h1 className="text-lg font-semibold text-gray-700 mt-2">🪻flower Bookmark</h1>
           </div>
 
