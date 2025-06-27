@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🪻 Flower Bookmark(Front)
 
-## Getting Started
+실제 운영되는 웹사이트처럼 만들고자 한 개인 프로젝트로 교보문고 웹앱에 영감을 받아 단순한 기능 구현이 아닌 **웹 서비스 그 자체가 브랜드라 되는** 것을 목표로 설계하고 개발했습니다.
 
-First, run the development server:
+## 🔨 기술 스택
+Language : JavaScript
+Framework: Next.js
+IDE : Visual Studio Code
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 프로젝트 개요
+ - 사용자는 도서를 검색하고, 장바구니에 담아 주문할 수 있습니다.
+ - 리뷰 및 평점을 통해 책에 대한 의견을 공유할 수 있으며, 관리자는 도서를 등록/수정/삭제 할 수 있습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 주요 기능 구현 현황
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 인증(로그인/회원가입)
+ - 현재는 토큰이 만료되어도 자동 로그아웃 처리가 없어 사용자 경험이 부자연스러움
+ - 추후 토큰 만료 시 자동 로그아웃 또는 토큰 갱신 로직 개선 필요
+ 
+## 메인 페이지
+ - 판매 중인 책에 대한 전체 조회
+ - 비회원도 도서 탐색 가능
 
-## Learn More
+## 도서 상세 페이지
+ - 책에 대한 상세 정보 조회 
+ - 리뷰 작성 및 조회(리뷰 조회는 403 권한 오류로 처리 중)
 
-To learn more about Next.js, take a look at the following resources:
+## 장바구니 페이지
+ - 도서 상세 페이지에서 해당 책을 장바구니에 담으면 추가되며, 수량을 변경 가능
+ - 구매하고자 하는 도서에 대한 결제 금액 및 적용 할인으로 예상 금액 추출
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 관리자 페이지
+ - 도서 추가/수정/삭제 기능 제공
+ - 일반 회원 접근 불가
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ⚙️ 구현 예정 또는 개선 필요 기능
+- 결제 페이지 구현 및 API 연동
+- 주문 상세 페이지 구현 및 백엔드와 연동
+- 토큰 만료 처리
+- 관리자 도서 목록 개선
+- 오류 처리 UI 개선(403, 404 등)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
